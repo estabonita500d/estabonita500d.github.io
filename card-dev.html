@@ -1,0 +1,89 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>AR Demo - Card</title>
+	<meta name="author" content="Josh Hung">
+	<meta name="description" content="掃描卡片, 顯示內容">
+</head>
+
+
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+<script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
+
+
+<body style='margin : 0px; overflow: hidden;'>
+	<a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+		<a-nft
+		type="nft"
+		url="https://raw.githubusercontent.com/estabonita500d/estabonita500d.github.io/master/nft/richart/richart.450px" 
+		smooth="true"
+		smoothCount="10"
+		smoothTolerance=".01"
+		smoothThreshold="5"
+		size="0.1"
+		>
+			<a-entity
+			position="50 10 -70"
+			scale="1 1 1"
+			rotation="120 0 180"
+			gltf-model="https://raw.githubusercontent.com/estabonita500d/estabonita500d.github.io/master/3DModel/DogWithBomb/scene.gltf"
+			>
+			</a-entity>
+			<a-entity
+			position="0 120 -70"
+			scale="3 5 1"
+			rotation="270 0 0"
+			text="color: #CA6F1E; baseline: top; anchor: left; width: 100; font: aileronsemibold;
+			value: Balance: $3,887"
+			>
+			</a-entity>
+		</a-nft>
+		
+		<a-entity camera id="video"></a-entity>
+	</a-scene>
+</body>
+
+
+<script>
+AFRAME.registerComponent("listener", {
+  init: function() {
+    this.target = document.querySelector('#target'); // your video
+    this.prevPosition = null; // initially there is no position or rotation
+    this.prevRotation = null;
+  },
+
+  tick: function() {
+    if (this.el.object3D.visible) {
+      this.target.setAttribute('visible', 'true')
+
+      if(!this.prevPosition && !this.prevRotation) { 
+        // there are no values to lerp from - set the initial values
+        this.target.setAttribute('position', this.el.getAttribute('position'))
+        this.target.setAttribute('rotation', this.el.getAttribute('rotation'))
+      } else {
+        // use the previous values to get an approximation 
+        this.target.object3D.position.lerp(this.prevPosition, 0.1)
+
+        // this (below) may seem ugly, but the rotation is a euler, not a THREE.Vector3, 
+        // so to use the lerp function i'm doing some probably unnecessary conversions
+        let rot = this.target.object3D.rotation.toVector3().lerp(this.prevRotation, 0.1)
+        this.target.object3D.rotation.setFromVector3(rot)
+      }
+      // update the values
+      this.prevPosition = this.el.object3D.position
+      this.prevRotation = this.el.object3D.rotation
+    } else {
+     // the marker dissapeared - reset the values
+     this.target.setAttribute('visible', 'false')
+     this.prevPosition = null;
+     this.prevRotation = null;
+   }
+  }
+})
+</script>
+
+
+</html>
