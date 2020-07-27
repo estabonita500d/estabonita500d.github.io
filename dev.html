@@ -37,7 +37,7 @@
 			scale="3 5 1"
 			rotation="270 0 0"
 			text="color: #CA6F1E; baseline: top; anchor: left; width: 100; font: aileronsemibold;
-			value: Balance: $4,887"
+			value: Balance: $5,887"
 			>
 			</a-entity>
 		</a-nft>
@@ -65,11 +65,11 @@ AFRAME.registerComponent("listener", {
         this.target.setAttribute('rotation', this.el.getAttribute('rotation'))
       } else {
         // use the previous values to get an approximation 
-        this.target.object3D.position.lerp(this.prevPosition, 0.1)
+        this.target.object3D.position.lerp(this.prevPosition, 1)
 
         // this (below) may seem ugly, but the rotation is a euler, not a THREE.Vector3, 
         // so to use the lerp function i'm doing some probably unnecessary conversions
-        let rot = this.target.object3D.rotation.toVector3().lerp(this.prevRotation, 0.1)
+        let rot = this.target.object3D.rotation.toVector3().lerp(this.prevRotation, 1)
         this.target.object3D.rotation.setFromVector3(rot)
       }
       // update the values
