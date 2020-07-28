@@ -7,22 +7,11 @@
 	<meta name="author" content="Josh Hung">
 	<meta name="description" content="打開GPS, 顯示內容">
 </head>
-
-<!--
-<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-<script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
--->
-
 	
 <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-<!--<script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>-->
 <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-	
 
-	
 
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene
@@ -31,7 +20,7 @@
 	arjs="sourceType: webcam; debugUIEnabled: false;"
 	>
 		<a-text
-		value="#9"
+		value="#0"
 		look-at="[gps-camera]"
 		rotation="0 180 0"
 		scale="3 3 3"
@@ -50,7 +39,7 @@
 		<!--gps-entity-place="latitude: 25.037447; longitude: 121.549917;" @Taishin Bank-->
 		
 		
-		<!--
+		
 		<a-text
 		value="Memorial Hall"
 		look-at="[gps-camera]"
@@ -59,7 +48,7 @@
 		gps-entity-place="latitude: 25.036407; longitude: 121.521642;"
 		position="2 1 -10"
 		></a-text>
-		-->
+		<!--
 		<a-image
 		src="https://raw.githubusercontent.com/estabonita500d/estabonita500d.github.io/master/src/img/LocationPin.jpg"
 		rotation="270 0 0"
@@ -67,7 +56,14 @@
 		gps-entity-place="latitude: 25.036407; longitude: 121.521642;"
 		position="2 1 -10"			 
 		</a-image>
-		
+		-->
+		<a-entity
+		gps-entity-place="latitude: 25.036407; longitude: 121.521642;"
+		scale="3 5 1"
+		text="color: #CA6F1E; baseline: top; anchor: left; width: 100; font: aileronsemibold;
+		value: Test 123"
+		>
+		</a-entity>
 		
 		
 		
